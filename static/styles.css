@@ -1,15 +1,101 @@
 /* Variables de color */
 :root {
+    color-scheme: light;
+
+    /* Superficies */
     --bg: #faf7f2;
     --surface: #fffdfa;
+    --surface-blanca: #ffffff;
     --surface-strong: #f0e9df;
+    --surface-apagada: #f3f0ec;
+    --surface-sutil: #f5f5f5;
+    --surface-hover-calido: #fff5e4;
+    --surface-exito-suave: #f4fbf6;
+    --hero-bg: #fff7ec;
+    --chip-bg: #fff4de;
+    --chip-texto: #8b4513;
+    --degradado-card-fin: #fbf0dd;
+    --pared-bg: #ccc;
+    --pared-linea: #999;
+    --leyenda-libre: #d8d2ca;
+
+    /* Texto */
     --text: #2d241e;
     --text-muted: #736356;
+    --texto-apagado: #b0a69b;
+    --primary-texto: #c25e30;
+    --accent-texto: #e88732;
+    --success-texto: #208b50;
+    --danger-texto: #dc3545;
+
+    /* Marca. Los solidos no cambian entre temas: el texto que va encima
+       (blanco o marron) esta calculado para ellos, no para la superficie. */
     --primary: #c25e30;
     --accent: #e88732;
-    --danger: #dc3545;
     --success: #208b50;
+    --danger: #dc3545;
+    --marca: #8b4513;
+    --sobre-acento: #8b4513;
+    --header-bg: #8b4513;
+
+    /* Alertas */
+    --exito-bg: #d4edda;
+    --exito-borde: #c3e6cb;
+    --exito-texto: #155724;
+    --error-bg: #f8d7da;
+    --error-borde: #f5c6cb;
+    --error-texto: #721c24;
+    --aviso-bg: #eaf7ee;
+    --aviso-error-bg: #fdecea;
+
+    /* Bordes */
     --border: rgba(45, 36, 30, 0.08);
+}
+
+/* ==================== MODO OSCURO ==================== */
+/* Se activa con data-tema="oscuro" en el <html>. Cambian las superficies, el
+   texto y el negro del header y el footer; los solidos de marca se quedan
+   como estan. Los valores estan medidos contra WCAG AA: ningun texto baja
+   de 4.5:1 sobre su fondo. */
+html[data-tema="oscuro"] {
+    color-scheme: dark;
+
+    --bg: #141210;
+    --surface: #1d1a17;
+    --surface-blanca: #221e1b;
+    --surface-strong: #2b2521;
+    --surface-apagada: #221e1b;
+    --surface-sutil: #2b2521;
+    --surface-hover-calido: #33291f;
+    --surface-exito-suave: #1b2a21;
+    --hero-bg: #1a1613;
+    --chip-bg: #2f2620;
+    --chip-texto: #e8b07a;
+    --degradado-card-fin: #2b2521;
+    --pared-bg: #2a2a2a;
+    --pared-linea: #3a3a3a;
+    --leyenda-libre: #6b655e;
+
+    --text: #f2ece5;
+    --text-muted: #b5a99c;
+    --texto-apagado: #948a80;
+    --primary-texto: #ee9a5f;
+    --accent-texto: #f2a75e;
+    --success-texto: #5ccf92;
+    --danger-texto: #ff8087;
+
+    --exito-bg: #16301f;
+    --exito-borde: #2c5c3c;
+    --exito-texto: #8ee0ad;
+    --error-bg: #331a1c;
+    --error-borde: #6b2f33;
+    --error-texto: #ffa8ad;
+    --aviso-bg: #16301f;
+    --aviso-error-bg: #331a1c;
+
+    --border: rgba(242, 236, 229, 0.16);
+
+    --header-bg: #000000;
 }
 
 * {
@@ -56,7 +142,7 @@ button {
 }
 
 .site-header {
-    background-color: #8b4513;
+    background-color: var(--header-bg);
     color: white;
     position: sticky;
     top: 0;
@@ -117,7 +203,7 @@ main {
 
 .hero {
     padding: 36px 24px;
-    background-color: #fff7ec;
+    background-color: var(--hero-bg);
     border-bottom: 1px solid var(--border);
 }
 
@@ -127,7 +213,7 @@ main {
 }
 
 .hero-copy .eyebrow {
-    color: var(--primary);
+    color: var(--primary-texto);
     font-weight: 700;
     letter-spacing: 0.14em;
     text-transform: uppercase;
@@ -153,7 +239,7 @@ main {
 
 .auth-form {
     display: none;
-    background: white;
+    background: var(--surface-blanca);
     border: 1px solid var(--border);
     border-radius: 24px;
     padding: 32px;
@@ -193,7 +279,7 @@ main {
     padding: 12px 14px;
     border: 1px solid var(--border);
     border-radius: 10px;
-    background: white;
+    background: var(--surface-blanca);
     color: var(--text);
     transition: all 0.2s ease;
 }
@@ -206,7 +292,7 @@ main {
 
 .btn-auth {
     background: var(--accent);
-    color: #8b4513;
+    color: var(--sobre-acento);
     border: none;
     border-radius: 12px;
     padding: 14px 20px;
@@ -237,7 +323,7 @@ main {
     background: none;
     border: none;
     padding: 0;
-    color: var(--primary);
+    color: var(--primary-texto);
     font-weight: 700;
     cursor: pointer;
     text-decoration: none;
@@ -245,7 +331,7 @@ main {
 }
 
 .auth-link:hover {
-    color: var(--accent);
+    color: var(--accent-texto);
     text-decoration: underline;
 }
 
@@ -260,15 +346,15 @@ main {
 }
 
 .auth-mensaje.success {
-    background: #d4edda;
-    border: 1px solid #c3e6cb;
-    color: #155724;
+    background: var(--exito-bg);
+    border: 1px solid var(--exito-borde);
+    color: var(--exito-texto);
 }
 
 .auth-mensaje.error {
-    background: #f8d7da;
-    border: 1px solid #f5c6cb;
-    color: #721c24;
+    background: var(--error-bg);
+    border: 1px solid var(--error-borde);
+    color: var(--error-texto);
 }
 
 /* Páginas de login/registro como página centrada */
@@ -285,7 +371,7 @@ main {
 /* Botón gigante de Reservar en el landing */
 .btn-reservar-gigante {
     background: var(--accent);
-    color: #8b4513;
+    color: var(--sobre-acento);
     font-size: 2rem;
     font-weight: 800;
     padding: 24px 72px;
@@ -338,9 +424,26 @@ main {
     margin-top: clamp(20px, 4vh, 40px);
 }
 
+/* Los dos botones grandes del hero, uno al lado del otro. El width: 100% es
+   necesario: sin el, esta fila se mide por su contenido y los botones se
+   encogen a lo que mide su texto en vez de crecer hasta su tope. */
+.botones-fila {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    gap: clamp(14px, 2.2vh, 26px);
+}
+
+/* Los dos comparten la fila: crecen a la par hasta el tope de 420px cada uno.
+   Con un ancho fijo en vez de reparto, el segundo se caia a la linea de abajo
+   apenas la ventana no alcanzaba para los dos. */
 .hero-acciones .btn-reservar-gigante,
 .hero-acciones .btn-menu-gigante {
-    width: min(100%, 420px);
+    flex: 1 1 0;
+    width: auto;
+    max-width: 420px;
     text-align: center;
     font-size: clamp(1.05rem, 0.55rem + 1.2vw, 2rem);
     padding: clamp(14px, 0.6rem + 1vh, 24px) clamp(18px, 3vw, 72px);
@@ -377,7 +480,7 @@ html {
     padding: 10px 22px;
     border-radius: 999px;
     background: var(--accent);
-    color: #8b4513;
+    color: var(--sobre-acento);
     font-weight: 700;
     text-decoration: none;
     white-space: nowrap;
@@ -386,9 +489,60 @@ html {
 
 .nav-accion:hover,
 .nav-accion:focus-visible {
-    color: #8b4513;
+    color: var(--sobre-acento);
     transform: translateY(-2px);
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
+}
+
+/* Barra de cuenta: el boton de rol y el de accesibilidad, en fila. */
+.main-nav {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* Boton de accesibilidad: alterna entre claro y oscuro. Comparte la familia
+   visual de .nav-accion para que se lean como el mismo grupo. */
+.btn-tema {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border: none;
+    border-radius: 999px;
+    background: var(--accent);
+    color: var(--sobre-acento);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-tema:hover,
+.btn-tema:focus-visible {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
+}
+
+.icono-tema {
+    width: 20px;
+    height: 20px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+/* En claro se ofrece la luna (pasar a oscuro); en oscuro, el sol (volver). */
+.icono-sol {
+    display: none;
+}
+
+html[data-tema="oscuro"] .icono-sol {
+    display: block;
+}
+
+html[data-tema="oscuro"] .icono-luna {
+    display: none;
 }
 
 /* ==================== PANEL DEL CLIENTE (vista perfil) ==================== */
@@ -411,7 +565,7 @@ html {
 }
 
 .panel-eyebrow {
-    color: var(--primary);
+    color: var(--primary-texto);
     font-weight: 700;
     letter-spacing: 0.14em;
     text-transform: uppercase;
@@ -456,7 +610,7 @@ html {
     margin-top: 20px;
     padding-top: 18px;
     border-top: 1px solid var(--border);
-    color: var(--danger);
+    color: var(--danger-texto);
     font-weight: 700;
     text-decoration: none;
 }
@@ -542,12 +696,12 @@ html {
 
 .etiqueta-estado.confirmado {
     background: rgba(42, 143, 79, 0.14);
-    color: var(--success);
+    color: var(--success-texto);
 }
 
 .etiqueta-estado.cancelado {
     background: rgba(214, 54, 42, 0.12);
-    color: var(--danger);
+    color: var(--danger-texto);
 }
 
 /* Tarjeta de datos del usuario */
@@ -732,10 +886,13 @@ html {
 }
 
 
+/* Cerrar sesion no es una accion del hero: va separado de los botones
+   grandes para que no se lea como un tercero. */
 .btn-logout {
     background: var(--danger);
     color: white;
     padding: 14px 32px;
+    margin-top: clamp(18px, 3vh, 32px);
     border-radius: 999px;
     font-weight: 700;
     text-decoration: none;
@@ -788,7 +945,7 @@ html {
     border: 1px solid var(--border);
     border-radius: 999px;
     padding: 12px 20px;
-    background: white;
+    background: var(--surface-blanca);
     color: var(--text);
     outline: none;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
@@ -807,7 +964,7 @@ html {
 }
 
 .menu-filter {
-    background: white;
+    background: var(--surface-blanca);
     border: 1px solid var(--border);
     border-radius: 24px;
     padding: 24px;
@@ -849,7 +1006,7 @@ html {
 }
 
 .menu-filter label:hover {
-    background: #fff5e4;
+    background: var(--surface-hover-calido);
     border-color: var(--accent);
 }
 
@@ -860,7 +1017,7 @@ html {
 }
 
 .plato {
-    background: white;
+    background: var(--surface-blanca);
     border: 1px solid var(--border);
     border-radius: 24px;
     overflow: hidden;
@@ -893,7 +1050,7 @@ html {
     top: 18px;
     left: 18px;
     background: rgba(255, 159, 28, 0.95);
-    color: #8b4513;
+    color: var(--sobre-acento);
     padding: 8px 14px;
     border-radius: 999px;
     font-size: 0.8rem;
@@ -923,8 +1080,8 @@ html {
 }
 
 .tags span {
-    background: #fff4de;
-    color: #8b4513;
+    background: var(--chip-bg);
+    color: var(--chip-texto);
     border-radius: 999px;
     padding: 8px 12px;
     font-size: 0.8rem;
@@ -941,14 +1098,14 @@ html {
 }
 
 .precio {
-    color: var(--primary);
+    color: var(--primary-texto);
     font-size: 1.1rem;
     font-weight: 700;
 }
 
 .btn-add {
     background: var(--accent);
-    color: #8b4513;
+    color: var(--sobre-acento);
     border: none;
     border-radius: 999px;
     padding: 12px 18px;
@@ -991,7 +1148,7 @@ html {
 }
 
 .salon-view {
-    background: white;
+    background: var(--surface-blanca);
     border: 2px solid var(--border);
     border-radius: 24px;
     padding: 24px;
@@ -1107,11 +1264,11 @@ html {
 }
 
 .pared {
-    background: linear-gradient(45deg, #999 25%, transparent 25%, transparent 75%, #999 75%, #999),
-                linear-gradient(45deg, #999 25%, transparent 25%, transparent 75%, #999 75%, #999);
+    background: linear-gradient(45deg, var(--pared-linea) 25%, transparent 25%, transparent 75%, var(--pared-linea) 75%, var(--pared-linea)),
+                linear-gradient(45deg, var(--pared-linea) 25%, transparent 25%, transparent 75%, var(--pared-linea) 75%, var(--pared-linea));
     background-size: 20px 20px;
     background-position: 0 0, 10px 10px;
-    background-color: #ccc;
+    background-color: var(--pared-bg);
     color: var(--text);
     font-weight: bold;
     border-radius: 8px;
@@ -1124,7 +1281,7 @@ html {
 
 /* Formulario de Reserva */
 .formulario-reserva {
-    background: white;
+    background: var(--surface-blanca);
     border: 1px solid var(--border);
     border-radius: 24px;
     padding: 28px;
@@ -1162,7 +1319,7 @@ html {
     padding: 12px 14px;
     border: 1px solid var(--border);
     border-radius: 10px;
-    background: white;
+    background: var(--surface-blanca);
     color: var(--text);
     transition: all 0.2s ease;
 }
@@ -1179,14 +1336,14 @@ html {
 }
 
 .form-group input[readonly] {
-    background: #f5f5f5;
+    background: var(--surface-sutil);
     color: var(--text-muted);
     cursor: not-allowed;
 }
 
 .btn-reservar {
     background: var(--accent);
-    color: #8b4513;
+    color: var(--sobre-acento);
     border: none;
     border-radius: 12px;
     padding: 14px 20px;
@@ -1215,18 +1372,18 @@ html {
     margin-top: 16px;
     padding: 14px;
     border-radius: 12px;
-    background: #d4edda;
-    border: 1px solid #c3e6cb;
-    color: #155724;
+    background: var(--exito-bg);
+    border: 1px solid var(--exito-borde);
+    color: var(--exito-texto);
     font-weight: 600;
     text-align: center;
     animation: slideIn 0.3s ease;
 }
 
 .mensaje-reserva.exito {
-    background: #d4edda;
-    border-color: #c3e6cb;
-    color: #155724;
+    background: var(--exito-bg);
+    border-color: var(--exito-borde);
+    color: var(--exito-texto);
 }
 
 @keyframes slideIn {
@@ -1242,7 +1399,7 @@ html {
 
 .site-footer {
     padding: 40px 24px 28px;
-    background: #8b4513;
+    background: var(--header-bg);
     color: white;
 }
 
@@ -1399,15 +1556,15 @@ html {
 }
 
 .mensaje.success {
-    background: #d4edda;
-    border: 1px solid #c3e6cb;
-    color: #155724;
+    background: var(--exito-bg);
+    border: 1px solid var(--exito-borde);
+    color: var(--exito-texto);
 }
 
 .mensaje.error {
-    background: #f8d7da;
-    border: 1px solid #f5c6cb;
-    color: #721c24;
+    background: var(--error-bg);
+    border: 1px solid var(--error-borde);
+    color: var(--error-texto);
 }
 
 /* Barra superior del salon */
@@ -1478,7 +1635,7 @@ html {
 
 .mesa-card-grande {
     border-color: var(--primary);
-    background: linear-gradient(180deg, #fffdf8 0%, #fbf0dd 100%);
+    background: linear-gradient(180deg, var(--surface) 0%, var(--degradado-card-fin) 100%);
 }
 
 .mesa-card-grande:hover {
@@ -1515,7 +1672,7 @@ html {
 }
 
 .mesa-card.seleccionada .mesa-card-badge {
-    background: #8b4513;
+    background: var(--marca);
 }
 
 @keyframes mesaEntra {
@@ -1621,7 +1778,7 @@ html {
     font-weight: 700;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: var(--primary);
+    color: var(--primary-texto);
 }
 
 .drawer-titulo {
@@ -1802,14 +1959,14 @@ html {
 .aviso-fecha {
     font-size: 0.82rem;
     font-weight: 600;
-    color: var(--primary);
+    color: var(--primary-texto);
     margin-bottom: 14px;
 }
 
 .aviso-bloqueo {
     font-size: 0.82rem;
     font-weight: 600;
-    color: var(--danger);
+    color: var(--danger-texto);
     margin: 0;
 }
 
@@ -1912,8 +2069,8 @@ html {
 }
 
 .bloque.ocupado {
-    background: #f3f0ec;
-    color: #b0a69b;
+    background: var(--surface-apagada);
+    color: var(--texto-apagado);
     border-style: dashed;
     cursor: not-allowed;
     text-decoration: line-through;
@@ -1936,7 +2093,7 @@ html {
 .bloque.sel-medio {
     background: var(--surface-strong);
     border-color: #d97706;
-    color: #4a2c00;
+    color: var(--text);
 }
 
 .pista-bloques {
@@ -1949,7 +2106,7 @@ html {
 .drawer-pie {
     padding: 18px 24px 22px;
     border-top: 1px solid var(--border);
-    background: #fffdf8;
+    background: var(--surface);
 }
 
 .drawer-resumen {
@@ -2028,7 +2185,7 @@ html {
 
 /* Libre: la mesa existe pero no hay nadie sentado. Se apaga. */
 .mesa-card.mesa-libre {
-    background: #f3f0ec;
+    background: var(--surface-apagada);
     border-color: var(--border);
     opacity: 0.6;
 }
@@ -2096,7 +2253,7 @@ html {
     font-variant-numeric: tabular-nums;
 }
 
-.leyenda-color.libre { background: #d8d2ca; }
+.leyenda-color.libre { background: var(--leyenda-libre); }
 .leyenda-color.por-atender { background: var(--success); }
 .leyenda-color.atendida { background: var(--accent); }
 
@@ -2104,13 +2261,13 @@ html {
     margin: 0 0 18px;
     padding: 12px 18px;
     border-radius: 14px;
-    background: #eaf7ee;
+    background: var(--aviso-bg);
     border: 1px solid var(--success);
     font-weight: 700;
 }
 
 .aviso-mesero.error {
-    background: #fdecea;
+    background: var(--aviso-error-bg);
     border-color: var(--danger);
 }
 
@@ -2139,7 +2296,7 @@ html {
     padding: 12px 14px;
     border: 1px solid var(--border);
     border-radius: 14px;
-    background: #fff;
+    background: var(--surface-blanca);
 }
 
 .linea-orden-datos {
@@ -2166,8 +2323,8 @@ html {
     height: 32px;
     border-radius: 10px;
     border: 1px solid var(--border);
-    background: #fff;
-    color: var(--danger);
+    background: var(--surface-blanca);
+    color: var(--danger-texto);
     font-size: 1.1rem;
     font-weight: 800;
     cursor: pointer;
@@ -2194,14 +2351,14 @@ html {
     padding: 12px 14px;
     border: 1px solid var(--border);
     border-radius: 14px;
-    background: #fff;
+    background: var(--surface-blanca);
     cursor: pointer;
     text-align: left;
 }
 
 .carta-item:hover {
     border-color: var(--success);
-    background: #f4fbf6;
+    background: var(--surface-exito-suave);
 }
 
 .carta-item-nombre {

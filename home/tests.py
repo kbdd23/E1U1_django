@@ -62,3 +62,46 @@ class InicioPorRolTest(TestCase):
         respuesta = self.client.get(reverse('home'))
 
         self.assertContains(respuesta, reverse('login'))
+
+
+class BotonDeTemaTest(TestCase):
+    """El boton de accesibilidad vive en el header de todas las paginas.
+
+    El estado del tema es el atributo data-tema del <html>, y el CSS reacciona
+    a el. Lo que se prueba aca es ese contrato: el atributo arranca en claro y
+    el boton existe siempre, con sesion o sin ella.
+    """
+
+    def setUp(self):
+        self.cliente = User.objects.create_user(
+            username=f'cliente-{self._testMethodName}@gmail.com',
+            password='1234', first_name='Kevin',
+        )
+
+    def test_el_header_trae_el_boton_de_tema(self):
+        respuesta = self.client.get(reverse('home'))
+
+        self.assertContains(respuesta, 'data-tema="claro"')
+        self.assertContains(respuesta, 'id="btn-tema"')
+        self.assertContains(respuesta, 'aria-pressed="false"')
+        self.assertContains(respuesta, 'aria-label="Modo oscuro"')
+
+    def test_el_boton_de_tema_no_depende_de_la_sesion(self):
+        # Un invitado tambien tiene derecho a leer la carta en oscuro.
+        anonima = self.client.get(reverse('home'))
+        self.client.force_login(self.cliente)
+        logueada = self.client.get(reverse('home'))
+
+        self.assertContains(anonima, 'id="btn-tema"')
+        self.assertContains(logueada, 'id="btn-tema"')
+
+    def test_el_tema_se_aplica_antes_de_pintar_la_pagina(self):
+        respuesta = self.client.get(reverse('home'))
+        pagina = respuesta.content.decode()
+
+        # El script tiene que ir en el <head>. Si bajara al final del body, la
+        # pagina se pintaria en claro antes de saltar a oscuro.
+        self.assertLess(
+            pagina.index("localStorage.getItem('tema')"),
+            pagina.index('<body>'),
+        )

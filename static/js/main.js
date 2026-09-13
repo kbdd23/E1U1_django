@@ -89,3 +89,38 @@ if (platos.length > 0) {
     new ResizeObserver(publicarAltoDelHeader).observe(encabezado);
     publicarAltoDelHeader();
 })();
+
+// ==================== TEMA CLARO / OSCURO ====================
+// El estado vive en el atributo data-tema del <html>: el CSS hace el resto.
+// El script del <head> ya lo dejo como corresponde antes del primer pintado,
+// aca solo se alterna y se recuerda la eleccion.
+(function () {
+    'use strict';
+
+    const raiz = document.documentElement;
+    const boton = document.getElementById('btn-tema');
+    if (!boton) {
+        return; // esta pagina no tiene header
+    }
+
+    function publicarEstado() {
+        boton.setAttribute('aria-pressed', String(raiz.dataset.tema === 'oscuro'));
+    }
+
+    function alternarTema() {
+        const tema = raiz.dataset.tema === 'oscuro' ? 'claro' : 'oscuro';
+        raiz.dataset.tema = tema;
+
+        try {
+            localStorage.setItem('tema', tema);
+        } catch (error) {
+            // Sin localStorage la eleccion dura lo que la pagina: el boton
+            // sigue funcionando igual.
+        }
+
+        publicarEstado();
+    }
+
+    boton.addEventListener('click', alternarTema);
+    publicarEstado();
+})();
