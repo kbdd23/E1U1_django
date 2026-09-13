@@ -32,10 +32,20 @@
             <div class="hero-copy">
                 <p class="eyebrow">Bienvenido a AbaroaService</p>
                 <h2>Estás logeado</h2>
-                <p>Hola, {{ user.first_name }}. Tu sesión está activa, puedes navegar por el menú y hacer reservas.</p>
+                {% if user.rol == 'mesero' %}
+                    <p>Hola, {{ user.first_name }}. Tu sesión está activa. Las mesas se atienden desde el salón: entra por ahí.</p>
+                {% elif user.rol == 'admin' %}
+                    <p>Hola, {{ user.first_name }}. Tu sesión está activa. La gestión del restaurante vive en el panel de administración.</p>
+                {% else %}
+                    <p>Hola, {{ user.first_name }}. Tu sesión está activa, puedes navegar por el menú y hacer reservas.</p>
+                {% endif %}
             </div>
             <div class="hero-acciones">
-                <a class="btn-reservar-gigante" href="{% url 'booking:crear_reserva' %}">Reservar</a>
+                {% if user.rol == 'cliente' %}
+                    <a class="btn-reservar-gigante" href="{% url 'booking:crear_reserva' %}">Reservar</a>
+                {% elif user.rol == 'mesero' %}
+                    <a class="btn-reservar-gigante" href="{% url 'mesero' %}">Salón</a>
+                {% endif %}
                 <a class="btn-menu-gigante" href="{% url 'menu' %}">MENÚ</a>
                 <a class="btn-logout" href="{% url 'logout' %}">Cerrar sesión</a>
             </div>

@@ -46,3 +46,25 @@ def admin_required(vista):
         return vista(request, *args, **kwargs)
 
     return envoltorio
+
+
+def cliente_required(vista):
+    """Deja pasar solo a clientes.
+
+    Anonimo -> al login, guardando a donde iba. Autenticado con otro rol
+    -> 403: un mesero que llega al alta de reservas no se perdio, intento
+    reservar como cliente, y la reserva de cliente es del cliente. Ocultar
+    el boton del inicio no alcanza: la URL queda en el historial.
+
+    El mesero no se queda sin puerta: para ocupar una mesa tiene la suya,
+    sentar_invitado, donde el invitado no lleva cuenta.
+    """
+    @wraps(vista)
+    def envoltorio(request, *args, **kwargs):
+        if not request.user.is_authenticated:
+            return redirect_to_login(request.get_full_path())
+        if request.user.rol != User.Rol.CLIENTE:
+            raise PermissionDenied
+        return vista(request, *args, **kwargs)
+
+    return envoltorio

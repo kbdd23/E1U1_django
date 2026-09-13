@@ -1,20 +1,24 @@
 from datetime import datetime
 
 from django.contrib import messages
-from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.utils import timezone
 from django.views.decorators.http import require_GET, require_POST
+
+from panel.decorators import cliente_required
 
 from .forms import ReservaForm
 from .horario import bloques_del_dia
 from .models import Mesa, Reserva
 
 
-@login_required
+@cliente_required
 def crear_reserva(request):
-    """Alta de reserva: solo usuarios autenticados.
+    """Alta de reserva: reserva de cliente, la hace un cliente.
+
+    El portero de rol frena al mesero antes de tocar el modelo: su via para
+    ocupar una mesa es sentar_invitado, donde el invitado no lleva cuenta.
 
     El cliente nunca viene del navegador: el servidor se lo pasa al
     formulario, que lo deja puesto en la instancia antes de que el modelo
@@ -46,7 +50,7 @@ def crear_reserva(request):
     )
 
 
-@login_required
+@cliente_required
 @require_GET
 def bloques_disponibles(request):
     """Disponibilidad de una mesa para una fecha, en bloques de 1 hora.
@@ -91,7 +95,7 @@ def bloques_disponibles(request):
     })
 
 
-@login_required
+@cliente_required
 @require_POST
 def cancelar_reserva(request, pk):
     """Cancela una reserva propia del cliente.

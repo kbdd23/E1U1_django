@@ -310,3 +310,72 @@ class CancelarInvitadoTest(BaseConMesaYMesero):
 
         self.assertEqual(respuesta.status_code, 409)
         self.assertEqual(Reserva.objects.get(mesa=self.mesa).estado, Reserva.ESTADO_CONFIRMADO)
+
+
+class ReservaDeClientePorRolTest(TestCase):
+    """El alta de reserva es del cliente: un mesero no reserva como cliente.
+
+    Ocultar el boton del inicio es la mitad del trabajo. La otra mitad es el
+    portero: la URL del formulario queda en el historial del navegador, y
+    quien la escriba a mano tiene que encontrarse con el 403.
+    """
+
+    def setUp(self):
+        self.mesa = Mesa.crear_mesa(
+            numero=Mesa.siguiente_numero(), capacidad=4, ubicacion='Ventana',
+        )
+        self.mesero = User.crear_mesero(
+            username=f'mesero-{self._testMethodName}@abaroa.com',
+            email=f'mesero-{self._testMethodName}@abaroa.com',
+            password='1234', first_name='Ana',
+        )
+        self.cliente = User.objects.create_user(
+            username=f'cliente-{self._testMethodName}@gmail.com',
+            password='1234', first_name='Kevin',
+        )
+
+    def datos_de_reserva(self):
+        return {
+            'mesa': str(self.mesa.pk),
+            'fecha': MARTES.date().isoformat(),
+            'hora_inicio': '13:00',
+            'hora_fin': '14:00',
+        }
+
+    def test_el_mesero_no_abre_el_formulario_de_reserva(self):
+        self.client.force_login(self.mesero)
+
+        respuesta = self.client.get(reverse('booking:crear_reserva'))
+
+        self.assertEqual(respuesta.status_code, 403)
+
+    def test_el_mesero_no_consulta_la_disponibilidad_de_una_mesa(self):
+        self.client.force_login(self.mesero)
+
+        respuesta = self.client.get(
+            reverse('booking:bloques'),
+            {'mesa': self.mesa.pk, 'fecha': MARTES.date().isoformat()},
+        )
+
+        self.assertEqual(respuesta.status_code, 403)
+
+    def test_el_mesero_no_crea_la_reserva_por_post(self):
+        self.client.force_login(self.mesero)
+
+        respuesta = self.client.post(reverse('booking:crear_reserva'), self.datos_de_reserva())
+
+        self.assertEqual(respuesta.status_code, 403)
+        self.assertFalse(Reserva.objects.filter(mesa=self.mesa).exists())
+
+    def test_el_cliente_si_abre_el_formulario(self):
+        self.client.force_login(self.cliente)
+
+        respuesta = self.client.get(reverse('booking:crear_reserva'))
+
+        self.assertEqual(respuesta.status_code, 200)
+
+    def test_un_anonimo_va_al_login_antes_de_reservar(self):
+        respuesta = self.client.get(reverse('booking:crear_reserva'))
+
+        self.assertEqual(respuesta.status_code, 302)
+        self.assertIn(reverse('login'), respuesta.url)
