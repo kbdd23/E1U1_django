@@ -1,15 +1,15 @@
 /* Variables de color */
 :root {
-    --bg: #fbf5eb;
-    --surface: #ffffff;
-    --surface-strong: #f4e7d0;
-    --text: #3b2c20;
-    --text-muted: #6f5a49;
-    --primary: #c17d2c;
-    --accent: #ff9f1c;
-    --danger: #d6362a;
-    --success: #2a8f4f;
-    --border: rgba(59, 44, 32, 0.12);
+    --bg: #faf7f2;
+    --surface: #fffdfa;
+    --surface-strong: #f0e9df;
+    --text: #2d241e;
+    --text-muted: #736356;
+    --primary: #c25e30;
+    --accent: #e88732;
+    --danger: #dc3545;
+    --success: #208b50;
+    --border: rgba(45, 36, 30, 0.08);
 }
 
 * {

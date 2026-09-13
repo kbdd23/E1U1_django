@@ -41,12 +41,14 @@
                 {% endif %}
             </div>
             <div class="hero-acciones">
-                {% if user.rol == 'cliente' %}
-                    <a class="btn-reservar-gigante" href="{% url 'booking:crear_reserva' %}">Reservar</a>
-                {% elif user.rol == 'mesero' %}
-                    <a class="btn-reservar-gigante" href="{% url 'mesero' %}">Salón</a>
-                {% endif %}
-                <a class="btn-menu-gigante" href="{% url 'menu' %}">MENÚ</a>
+                <div class="botones-fila">
+                    {% if user.rol == 'cliente' %}
+                        <a class="btn-reservar-gigante" href="{% url 'booking:crear_reserva' %}">Reservar</a>
+                    {% elif user.rol == 'mesero' %}
+                        <a class="btn-reservar-gigante" href="{% url 'mesero' %}">Salón</a>
+                    {% endif %}
+                    <a class="btn-menu-gigante" href="{% url 'menu' %}">MENÚ</a>
+                </div>
                 <a class="btn-logout" href="{% url 'logout' %}">Cerrar sesión</a>
             </div>
         {% else %}
@@ -56,8 +58,10 @@
                 <p>Descubre nuestros deliciosos platos caseros, disfruta de colaciones y jugos naturales frescos. Regístrate hoy y comienza a disfrutar de nuestro servicio familiar con acceso a menú, reservas y promociones exclusivas.</p>
             </div>
             <div class="hero-acciones">
-                <a class="btn-reservar-gigante" href="{% url 'login' %}">Reservar</a>
-                <a class="btn-menu-gigante" href="{% url 'menu' %}">MENÚ</a>
+                <div class="botones-fila">
+                    <a class="btn-reservar-gigante" href="{% url 'login' %}">Reservar</a>
+                    <a class="btn-menu-gigante" href="{% url 'menu' %}">MENÚ</a>
+                </div>
             </div>
         {% endif %}
     </div>
