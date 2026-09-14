@@ -20,7 +20,7 @@ PLATOS = [
         'precio': 12990,
         'categoria': 'carnes',
         'badge': 'Personalizado',
-        'imagen': 'https://losjarasrestaurant.cl/wp-content/uploads/2020/05/Lomo-a-lo-Pobre.jpg',
+        'imagen': 'https://tofuu.getjusto.com/orioneat-local/resized2/ztPNQwvpzEvBuXtk9-2400-x.webp',
         'alergenos': ['gluten', 'huevo'],
     },
     {

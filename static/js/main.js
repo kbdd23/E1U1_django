@@ -3,11 +3,20 @@ const filterCategorias = document.querySelectorAll('.filter-categoria');
 const filterAlergenos = document.querySelectorAll('.filter-alergeno');
 const platos = document.querySelectorAll('.plato');
 const searchInput = document.getElementById('search');
-    //MENU
+
+// NUEVO: Identificamos el formulario de búsqueda
+const searchForm = document.querySelector('.search-bar'); 
+
 if (platos.length > 0) {
+
+    // NUEVO: Evitamos que al presionar "Enter" la página se recargue y se cuelgue el servidor
+    if (searchForm) {
+        searchForm.addEventListener('submit', function(evento) {
+            evento.preventDefault();
+        });
+    }
+
     function aplicarFiltros() {
-        // "Todos" no es una categoria: es la ausencia de filtro. Si viajara
-        // como valor, ningun plato la tendria y la grilla se vaciaria.
         const categoriasSeleccionadas = Array.from(filterCategorias)
             .filter(cb => cb.checked)
             .map(cb => cb.value)
@@ -22,13 +31,11 @@ if (platos.length > 0) {
         platos.forEach(plato => {
             let mostrar = true;
 
-            // Filtro por categoría
             const categoria = plato.getAttribute('data-category');
             if (categoriasSeleccionadas.length > 0 && !categoriasSeleccionadas.includes(categoria)) {
                 mostrar = false;
             }
 
-            // Filtro por alérgenos (ocultar si el plato contiene alguno seleccionado)
             if (alejenosSeleccionados.length > 0) {
                 const tags = plato.querySelectorAll('[data-alergeno]');
                 const tieneAlergeno = Array.from(tags).some(tag =>
@@ -39,7 +46,6 @@ if (platos.length > 0) {
                 }
             }
 
-            // Filtro por búsqueda
             if (textoBusqueda.length > 0) {
                 const nombre = plato.querySelector('h3').textContent.toLowerCase();
                 const descripcion = plato.querySelector('p').textContent.toLowerCase();
@@ -64,17 +70,13 @@ if (platos.length > 0) {
 }
 
 // ==================== ALTO REAL DEL HEADER ====================
-// El hero mide "pantalla completa menos el header". El header cambia de
-// alto al redimensionar (bajo los 720px pasa a dos filas), asi que en vez
-// de un numero fijo en el CSS lo medimos en vivo y lo publicamos como
-// variable CSS. El valor escrito en styles.css queda solo de respaldo.
 (function () {
     'use strict';
 
     const encabezado = document.querySelector('.site-header');
     const hero = document.querySelector('.hero-carrusel');
     if (!encabezado || !hero) {
-        return; // esta pagina no tiene hero a pantalla completa
+        return; 
     }
 
     function publicarAltoDelHeader() {
@@ -84,43 +86,6 @@ if (platos.length > 0) {
         );
     }
 
-    // ResizeObserver dispara cada vez que el header cambia de tamaño,
-    // incluso si el cambio lo provoca un media query y no la ventana.
     new ResizeObserver(publicarAltoDelHeader).observe(encabezado);
     publicarAltoDelHeader();
-})();
-
-// ==================== TEMA CLARO / OSCURO ====================
-// El estado vive en el atributo data-tema del <html>: el CSS hace el resto.
-// El script del <head> ya lo dejo como corresponde antes del primer pintado,
-// aca solo se alterna y se recuerda la eleccion.
-(function () {
-    'use strict';
-
-    const raiz = document.documentElement;
-    const boton = document.getElementById('btn-tema');
-    if (!boton) {
-        return; // esta pagina no tiene header
-    }
-
-    function publicarEstado() {
-        boton.setAttribute('aria-pressed', String(raiz.dataset.tema === 'oscuro'));
-    }
-
-    function alternarTema() {
-        const tema = raiz.dataset.tema === 'oscuro' ? 'claro' : 'oscuro';
-        raiz.dataset.tema = tema;
-
-        try {
-            localStorage.setItem('tema', tema);
-        } catch (error) {
-            // Sin localStorage la eleccion dura lo que la pagina: el boton
-            // sigue funcionando igual.
-        }
-
-        publicarEstado();
-    }
-
-    boton.addEventListener('click', alternarTema);
-    publicarEstado();
 })();

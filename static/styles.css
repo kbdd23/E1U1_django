@@ -1,55 +1,74 @@
-/* Variables de color */
-:root {
-    color-scheme: light;
+/* Importar fuente moderna */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap');
 
-    /* Superficies */
-    --bg: #faf7f2;
-    --surface: #fffdfa;
-    --surface-blanca: #ffffff;
-    --surface-strong: #f0e9df;
-    --surface-apagada: #f3f0ec;
-    --surface-sutil: #f5f5f5;
-    --surface-hover-calido: #fff5e4;
-    --surface-exito-suave: #f4fbf6;
-    --hero-bg: #fff7ec;
-    --chip-bg: #fff4de;
-    --chip-texto: #8b4513;
-    --degradado-card-fin: #fbf0dd;
-    --pared-bg: #ccc;
-    --pared-linea: #999;
-    --leyenda-libre: #d8d2ca;
+/* Variables de color - MODO OSCURO FIJO ("Terracota Dark") */
+:root {
+    color-scheme: dark;
+
+    /* Superficies Oscuras */
+    --bg: #141210;
+    --surface: #1d1a17;
+    --surface-blanca: #221e1b;
+    --surface-strong: #2b2521;
+    --surface-apagada: #221e1b;
+    --surface-sutil: #2b2521;
+    --surface-hover-calido: #33291f;
+    --surface-exito-suave: #1b2a21;
+    --hero-bg: #1a1613;
+    --chip-bg: #2f2620;
+    --chip-texto: #e8b07a;
+    --degradado-card-fin: #2b2521;
+    --pared-bg: #2a2a2a;
+    --pared-linea: #3a3a3a;
+    --leyenda-libre: #6b655e;
 
     /* Texto */
-    --text: #2d241e;
-    --text-muted: #736356;
-    --texto-apagado: #b0a69b;
-    --primary-texto: #c25e30;
-    --accent-texto: #e88732;
-    --success-texto: #208b50;
-    --danger-texto: #dc3545;
+    --text: #f2ece5;
+    --text-muted: #b5a99c;
+    --texto-apagado: #948a80;
+    --primary-texto: #ee9a5f;
+    --accent-texto: #f2a75e;
+    --success-texto: #5ccf92;
+    --danger-texto: #ff8087;
 
-    /* Marca. Los solidos no cambian entre temas: el texto que va encima
-       (blanco o marron) esta calculado para ellos, no para la superficie. */
+    /* Marca (Naranjas y Terracotas) */
     --primary: #c25e30;
     --accent: #e88732;
     --success: #208b50;
     --danger: #dc3545;
     --marca: #8b4513;
-    --sobre-acento: #8b4513;
-    --header-bg: #8b4513;
+    --sobre-acento: #141210; /* Texto oscuro para que lea bien sobre botones naranjas */
+    --header-bg: #000000;
 
     /* Alertas */
-    --exito-bg: #d4edda;
-    --exito-borde: #c3e6cb;
-    --exito-texto: #155724;
-    --error-bg: #f8d7da;
-    --error-borde: #f5c6cb;
-    --error-texto: #721c24;
-    --aviso-bg: #eaf7ee;
-    --aviso-error-bg: #fdecea;
+    --exito-bg: #16301f;
+    --exito-borde: #2c5c3c;
+    --exito-texto: #8ee0ad;
+    --error-bg: #331a1c;
+    --error-borde: #6b2f33;
+    --error-texto: #ffa8ad;
+    --aviso-bg: #16301f;
+    --aviso-error-bg: #331a1c;
 
     /* Bordes */
-    --border: rgba(45, 36, 30, 0.08);
+    --border: rgba(242, 236, 229, 0.16);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Poppins', sans-serif; /* Nueva fuente aplicada */
+    background-color: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
 }
 
 /* ==================== MODO OSCURO ==================== */
@@ -183,12 +202,12 @@ button {
     object-fit: cover;
 }
 
-.brand .eyebrow {
-    margin-bottom: 6px;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    font-size: 0.75rem;
-    color: #ffe0a3;
+.brand .eyebrow { 
+    margin-bottom: 6px; 
+    text-transform: uppercase; 
+    letter-spacing: 0.12em; 
+    font-size: 0.75rem; 
+    color: #E0E0E0; /* Blanco plateado */
 }
 
 .brand h1 {
@@ -291,21 +310,24 @@ main {
 }
 
 .btn-auth {
-    background: var(--accent);
-    color: var(--sobre-acento);
+    background: #E0E0E0; /* Gris Plata */
+    color: #141210; /* Texto oscuro para contraste */
     border: none;
-    border-radius: 12px;
+    border-radius: 999px; /* Bordes redondeados como en el Inicio */
     padding: 14px 20px;
-    font-weight: 700;
+    font-weight: 800;
     font-size: 1rem;
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     margin-top: 10px;
+    box-shadow: 0 8px 20px rgba(224, 224, 224, 0.15);
 }
 
 .btn-auth:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 12px 24px rgba(255, 159, 28, 0.3);
+    transform: translateY(-4px); /* Efecto levitar */
+    box-shadow: 0 12px 25px rgba(224, 224, 224, 0.3);
+    background: #ffffff; /* Brilla al pasar el ratón */
+    color: #000000;
 }
 
 .btn-auth:active {
@@ -323,16 +345,18 @@ main {
     background: none;
     border: none;
     padding: 0;
-    color: var(--primary-texto);
-    font-weight: 700;
+    color: #ffffff; /* Blanco notable */
+    font-weight: 800; /* Letra un poco más gruesa */
     cursor: pointer;
     text-decoration: none;
-    transition: color 0.2s ease;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.3); /* Brillo difuminado base */
+    transition: all 0.3s ease;
 }
 
 .auth-link:hover {
-    color: var(--accent-texto);
+    color: #ffffff;
     text-decoration: underline;
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.8); /* El brillo se hace más fuerte al pasar el ratón */
 }
 
 .auth-mensaje {
@@ -369,93 +393,75 @@ main {
 }
 
 /* Botón gigante de Reservar en el landing */
-.btn-reservar-gigante {
-    background: var(--accent);
-    color: var(--sobre-acento);
-    font-size: 2rem;
-    font-weight: 800;
-    padding: 24px 72px;
-    border-radius: 999px;
-    text-decoration: none;
-    box-shadow: 0 20px 40px rgba(255, 159, 28, 0.35);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.btn-reservar-gigante:hover,
-.btn-reservar-gigante:focus-visible {
-    transform: translateY(-4px) scale(1.02);
-    box-shadow: 0 28px 56px rgba(255, 159, 28, 0.45);
-}
-
-.btn-reservar-gigante:active {
-    transform: translateY(0);
-}
-
-/* Botón gigante de Menú: misma geometría que Reservar, color rojo de marca */
-.btn-menu-gigante {
-    background: var(--danger);
-    color: #ffffff;
-    font-size: 2rem;
-    font-weight: 800;
-    padding: 24px 72px;
-    border-radius: 999px;
-    text-decoration: none;
-    box-shadow: 0 20px 40px rgba(214, 54, 42, 0.35);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.btn-menu-gigante:hover,
-.btn-menu-gigante:focus-visible {
-    transform: translateY(-4px) scale(1.02);
-    box-shadow: 0 28px 56px rgba(214, 54, 42, 0.45);
-}
-
-.btn-menu-gigante:active {
-    transform: translateY(0);
-}
-
-/* Botones del hero apilados: Reservar arriba, Menú debajo.
-   Tamaños fluidos: encogen con la ventana en vez de desbordarla. */
 .hero-acciones {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: clamp(10px, 1.2vh, 18px);
+    gap: 24px;
     margin-top: clamp(20px, 4vh, 40px);
 }
 
-/* Los dos botones grandes del hero, uno al lado del otro. El width: 100% es
-   necesario: sin el, esta fila se mide por su contenido y los botones se
-   encogen a lo que mide su texto en vez de crecer hasta su tope. */
 .botones-fila {
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: row;
     justify-content: center;
-    align-items: center;
-    width: 100%;
-    gap: clamp(14px, 2.2vh, 26px);
+    flex-wrap: wrap;
+    gap: 24px;
 }
 
-/* Los dos comparten la fila: crecen a la par hasta el tope de 420px cada uno.
-   Con un ancho fijo en vez de reparto, el segundo se caia a la linea de abajo
-   apenas la ventana no alcanzaba para los dos. */
-.hero-acciones .btn-reservar-gigante,
-.hero-acciones .btn-menu-gigante {
-    flex: 1 1 0;
+/* Botones Reservar y Menú unificados (Gris Plata) */
+.botones-fila .btn-reservar-gigante,
+.botones-fila .btn-menu-gigante {
     width: auto;
-    max-width: 420px;
+    min-width: 220px;
     text-align: center;
-    font-size: clamp(1.05rem, 0.55rem + 1.2vw, 2rem);
-    padding: clamp(14px, 0.6rem + 1vh, 24px) clamp(18px, 3vw, 72px);
+    font-size: clamp(1.2rem, 1vw + 1rem, 1.5rem);
+    padding: 16px 48px;
+    border-radius: 999px;
+    text-decoration: none;
+    font-weight: 800;
+    border: none;
+    background: #E0E0E0; /* Plata */
+    color: #141210; /* Texto oscuro */
+    box-shadow: 0 10px 25px rgba(224, 224, 224, 0.15);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
-/* Full-bleed: el hero se sale del max-width de main para tocar los bordes
-   de la pantalla. overflow-x: clip evita la barra horizontal que deja el
-   100vw sin romper el header sticky (clip no crea contenedor de scroll). */
-html {
-    overflow-x: clip;
+.botones-fila .btn-reservar-gigante:hover,
+.botones-fila .btn-menu-gigante:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(224, 224, 224, 0.3);
+    background: #ffffff; /* Brillo al pasar el mouse */
+    color: #000000;
 }
 
+.botones-fila .btn-reservar-gigante:active,
+.botones-fila .btn-menu-gigante:active {
+    transform: translateY(0);
+}
+
+/* Botón Cerrar Sesión (Transparente) */
+.hero-acciones .btn-logout {
+    margin-top: 8px;
+    background: transparent;
+    color: rgba(255, 255, 255, 0.8);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    padding: 14px 32px;
+    border-radius: 999px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    width: auto;
+    min-width: 220px;
+    text-align: center;
+}
+
+.hero-acciones .btn-logout:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: #ffffff;
+    color: #ffffff;
+    transform: translateY(-2px);
+}
 /* Carrusel de fondo a pantalla completa: es el contenedor del texto.
    La altura del header la mide main.js en vivo y la publica como
    --altura-header-real; el valor de abajo es solo el respaldo por si el
@@ -475,23 +481,24 @@ html {
 }
 
 /* Botón de cuenta del header: Perfil / Iniciar sesión */
+/* BOTONES SUPERIORES (Navbar) */
 .nav-accion {
     display: inline-block;
     padding: 10px 22px;
     border-radius: 999px;
-    background: var(--accent);
-    color: var(--sobre-acento);
+    background: #E0E0E0; /* Plata */
+    color: #141210; /* Texto oscuro */
     font-weight: 700;
     text-decoration: none;
     white-space: nowrap;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
 }
 
-.nav-accion:hover,
-.nav-accion:focus-visible {
-    color: var(--sobre-acento);
+.nav-accion:hover {
     transform: translateY(-2px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 10px 20px rgba(224, 224, 224, 0.25);
+    background: #ffffff; /* Brillo al pasar el mouse */
+    color: #000000;
 }
 
 /* Barra de cuenta: el boton de rol y el de accesibilidad, en fila. */
@@ -851,21 +858,25 @@ html[data-tema="oscuro"] .icono-luna {
 }
 
 /* Con velo negro el texto marrón del hero no se lee: pasa a claro */
-.hero-carrusel .hero-copy .eyebrow {
-    color: #ffd966;
-    font-size: clamp(0.9rem, 0.55rem + 0.85vw, 1.7rem);
+.hero-carrusel .hero-copy .eyebrow { 
+    color: #E0E0E0; /* Blanco plateado */
+    font-size: clamp(0.9rem, 0.55rem + 0.85vw, 1.7rem); 
+    letter-spacing: 0.1em;
 }
 
-.hero-carrusel .hero-copy h2 {
-    color: #ffffff;
-    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.45);
-    font-size: clamp(1.6rem, 1rem + 2.4vw, 2.8rem);
+.hero-carrusel .hero-copy h2 { 
+    color: #ffffff; /* Este lo dejamos blanco para que el título resalte */
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.8); 
+    font-size: clamp(1.6rem, 1rem + 2.4vw, 2.8rem); 
+    margin-bottom: 14px; 
 }
 
-.hero-carrusel .hero-copy p {
-    color: rgba(255, 255, 255, 0.88);
-    text-shadow: 0 1px 8px rgba(0, 0, 0, 0.45);
-    font-size: clamp(0.95rem, 0.85rem + 0.35vw, 1.15rem);
+.hero-carrusel .hero-copy p { 
+    color: #B5B5B5; /* Gris difuminado elegante */
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9); /* Sombra oscura para que se lea sobre la foto */
+    font-size: clamp(0.95rem, 0.85rem + 0.35vw, 1.15rem); 
+    max-width: 680px; 
+    line-height: 1.8; 
 }
 
 /* Ventanas bajas: el hero deja de exigir pantalla completa antes de
@@ -1002,18 +1013,19 @@ html[data-tema="oscuro"] .icono-luna {
     width: 16px;
     height: 16px;
     cursor: pointer;
-    accent-color: var(--accent);
+    accent-color: #E0E0E0; 
 }
 
 .menu-filter label:hover {
-    background: var(--surface-hover-calido);
-    border-color: var(--accent);
+    background: rgba(255, 255, 255, 0.05); 
+    border-color: #ffffff;
 }
 
 .platos-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 24px;
+    align-items: start; 
 }
 
 .plato {
@@ -1025,6 +1037,7 @@ html[data-tema="oscuro"] .icono-luna {
     flex-direction: column;
     box-shadow: 0 20px 40px rgba(59, 44, 32, 0.06);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
+    height: 100%;
 }
 
 .plato:hover {
@@ -1040,8 +1053,7 @@ html[data-tema="oscuro"] .icono-luna {
 
 .plato img {
     width: 100%;
-    height: auto;
-    aspect-ratio: 4 / 3;
+    height: 200px; 
     object-fit: cover;
 }
 
@@ -1049,12 +1061,12 @@ html[data-tema="oscuro"] .icono-luna {
     position: absolute;
     top: 18px;
     left: 18px;
-    background: rgba(255, 159, 28, 0.95);
-    color: var(--sobre-acento);
+    background: #E0E0E0; 
+    color: #141210; 
     padding: 8px 14px;
     border-radius: 999px;
     font-size: 0.8rem;
-    font-weight: 700;
+    font-weight: 800;
 }
 
 .plato-content {
@@ -1062,6 +1074,7 @@ html[data-tema="oscuro"] .icono-luna {
     display: flex;
     flex-direction: column;
     gap: 16px;
+    flex: 1; 
 }
 
 .plato h3 {
@@ -1080,8 +1093,9 @@ html[data-tema="oscuro"] .icono-luna {
 }
 
 .tags span {
-    background: var(--chip-bg);
-    color: var(--chip-texto);
+    background: rgba(224, 224, 224, 0.1); 
+    color: #E0E0E0; 
+    border: 1px solid rgba(224, 224, 224, 0.3); 
     border-radius: 999px;
     padding: 8px 12px;
     font-size: 0.8rem;
@@ -1098,7 +1112,7 @@ html[data-tema="oscuro"] .icono-luna {
 }
 
 .precio {
-    color: var(--primary-texto);
+    color: #ffffff; 
     font-size: 1.1rem;
     font-weight: 700;
 }
@@ -1342,21 +1356,24 @@ html[data-tema="oscuro"] .icono-luna {
 }
 
 .btn-reservar {
-    background: var(--accent);
-    color: var(--sobre-acento);
+    background: #E0E0E0; /* Plata */
+    color: #141210; /* Texto oscuro */
     border: none;
-    border-radius: 12px;
+    border-radius: 999px; /* Bordes redondos consistentes */
     padding: 14px 20px;
-    font-weight: 700;
+    font-weight: 800;
     font-size: 1rem;
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     margin-top: 10px;
+    box-shadow: 0 8px 20px rgba(224, 224, 224, 0.15);
 }
 
 .btn-reservar:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 12px 24px rgba(255, 159, 28, 0.3);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 25px rgba(224, 224, 224, 0.3);
+    background: #ffffff; /* Brilla a blanco puro */
+    color: #000000;
 }
 
 .btn-reservar:active {
@@ -1397,33 +1414,39 @@ html[data-tema="oscuro"] .icono-luna {
     }
 }
 
-.site-footer {
-    padding: 40px 24px 28px;
-    background: var(--header-bg);
-    color: white;
+/* FOOTER */
+.site-footer { 
+    padding: 40px 24px 28px; 
+    background: #1f1a17; 
+    color: #E0E0E0; /* Color general plata */
 }
 
-.footer-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 24px;
-    max-width: 1200px;
-    margin: 0 auto 18px;
+.footer-grid { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); 
+    gap: 24px; 
+    max-width: 1200px; 
+    margin: 0 auto 18px; 
 }
 
-.site-footer h3 {
-    margin-bottom: 12px;
+/* Títulos del footer en plata */
+.site-footer h3 { 
+    margin-bottom: 12px; 
+    color: #E0E0E0; 
 }
 
-.site-footer p {
-    color: #f4e0c7;
-    line-height: 1.8;
+/* Párrafos del footer en gris difuminado */
+.site-footer p { 
+    color: #B5B5B5; 
+    line-height: 1.8; 
 }
 
-.footer-copy {
-    text-align: center;
-    font-size: 0.95rem;
-    color: #ffe8c7;
+/* Texto de copyright en gris difuminado */
+.footer-copy { 
+    text-align: center; 
+    font-size: 0.95rem; 
+    color: #B5B5B5; 
+    margin-top: 20px;
 }
 
 @media (max-width: 980px) {
@@ -1487,8 +1510,10 @@ html[data-tema="oscuro"] .icono-luna {
     }
 
     .platos-grid {
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    }
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 24px;
+}
 
     .mesa-fila {
         grid-template-columns: repeat(2, 1fr);
@@ -1778,7 +1803,7 @@ html[data-tema="oscuro"] .icono-luna {
     font-weight: 700;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: var(--primary-texto);
+    color: #E0E0E0; 
 }
 
 .drawer-titulo {
@@ -1828,8 +1853,8 @@ html[data-tema="oscuro"] .icono-luna {
     display: inline-block;
     margin-left: 8px;
     vertical-align: middle;
-    background: var(--accent);
-    color: #4a2c00;
+    background: #E0E0E0; /* Plata */
+    color: #141210; /* Letras oscuras */
     font-size: 0.62rem;
     font-weight: 800;
     letter-spacing: 0.08em;
@@ -1884,7 +1909,7 @@ html[data-tema="oscuro"] .icono-luna {
 
 .chip-dia:not(.deshabilitado):hover {
     transform: translateY(-2px);
-    border-color: var(--primary);
+    border-color: #ffffff;
 }
 
 .chip-dia-nombre {
@@ -1906,15 +1931,16 @@ html[data-tema="oscuro"] .icono-luna {
 }
 
 .chip-dia.seleccionado {
-    background: var(--primary);
-    border-color: var(--primary);
+    background: #E0E0E0; /* Fondo plata */
+    border-color: #E0E0E0;
     transform: translateY(-2px);
 }
 
+/* Letras oscuras dentro del día seleccionado para contraste */
 .chip-dia.seleccionado .chip-dia-nombre,
 .chip-dia.seleccionado .chip-dia-numero,
 .chip-dia.seleccionado .chip-dia-mes {
-    color: white;
+    color: #141210; 
 }
 
 .chip-dia.deshabilitado {
@@ -2064,8 +2090,8 @@ html[data-tema="oscuro"] .icono-luna {
 
 .bloque:hover {
     transform: translateY(-2px);
-    border-color: var(--success);
-    box-shadow: 0 8px 18px rgba(42, 143, 79, 0.15);
+    border-color: #ffffff; 
+    box-shadow: 0 8px 18px rgba(255, 255, 255, 0.15); 
 }
 
 .bloque.ocupado {
@@ -2084,16 +2110,17 @@ html[data-tema="oscuro"] .icono-luna {
 
 .bloque.sel-inicio,
 .bloque.sel-fin {
-    background: var(--accent);
-    border-color: #d97706;
-    color: #4a2c00;
+    background: #E0E0E0; 
+    border-color: #ffffff; 
+    color: #141210; 
     transform: translateY(-2px);
 }
 
+
 .bloque.sel-medio {
-    background: var(--surface-strong);
-    border-color: #d97706;
-    color: var(--text);
+    background: rgba(224, 224, 224, 0.15); 
+    border-color: #E0E0E0;
+    color: #ffffff;
 }
 
 .pista-bloques {
@@ -2130,11 +2157,12 @@ html[data-tema="oscuro"] .icono-luna {
     background: var(--surface);
     color: var(--text);
     font-weight: 700;
-    transition: border-color 0.2s ease, transform 0.2s ease;
+    transition: border-color 0.2s ease, transform 0.2s ease, background 0.2s ease;
 }
 
 .btn-volver:hover {
-    border-color: var(--primary);
+    border-color: #ffffff; 
+    background: rgba(255, 255, 255, 0.05);
     transform: translateY(-1px);
 }
 
@@ -2417,3 +2445,14 @@ html[data-tema="oscuro"] .icono-luna {
 }
 
 .leyenda-color.ajena { background: var(--danger); }
+
+/* Correcion de Brillo En Campos de Texto */
+.form-auth input:focus,
+.form-group input:focus,
+.tarjeta-perfil .campo input:focus,
+.search-bar input:focus,
+.otro-dia input[type="date"]:focus {
+    outline: none !important;
+    border-color: #E0E0E0 !important; /* Borde color blanco plata */
+    box-shadow: 0 0 0 3px rgba(224, 224, 224, 0.25) !important; /* Resplandor plata semi-transparente */
+}
