@@ -572,7 +572,7 @@ html[data-tema="oscuro"] .icono-luna {
 }
 
 .panel-eyebrow {
-    color: var(--primary-texto);
+    color: #E0E0E0; 
     font-weight: 700;
     letter-spacing: 0.14em;
     text-transform: uppercase;
@@ -604,12 +604,12 @@ html[data-tema="oscuro"] .icono-luna {
 
 .panel-opcion:hover,
 .panel-opcion:focus-visible {
-    background: var(--surface-strong);
+    background: rgba(255, 255, 255, 0.05); 
 }
 
 .panel-opcion.activa {
-    background: var(--primary);
-    color: #ffffff;
+    background: #E0E0E0; 
+    color: #141210; 
 }
 
 .panel-salir {
@@ -753,7 +753,7 @@ html[data-tema="oscuro"] .icono-luna {
     padding: 11px 14px;
     border: 1px solid var(--border);
     border-radius: 10px;
-    background: #ffffff;
+    background: var(--surface-blanca);
     color: var(--text);
     transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
@@ -768,21 +768,22 @@ html[data-tema="oscuro"] .icono-luna {
     display: inline-block;
     padding: 12px 28px;
     border: 0;
-    border-radius: 999px;
-    background: var(--primary);
-    color: #ffffff;
+    border-radius: 999px; 
+    background: #E0E0E0; 
+    color: #141210; 
     font-weight: 700;
     font-size: 1rem;
     cursor: pointer;
     text-decoration: none;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
 }
 
 .btn-panel:hover,
 .btn-panel:focus-visible {
-    color: #ffffff;
+    background: #ffffff; 
+    color: #000000;
     transform: translateY(-2px);
-    box-shadow: 0 14px 28px rgba(193, 125, 44, 0.3);
+    box-shadow: 0 10px 20px rgba(224, 224, 224, 0.25);
 }
 
 /* El panel pasa a una sola columna cuando no cabe la barra lateral */
